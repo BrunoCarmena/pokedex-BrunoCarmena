@@ -9,8 +9,8 @@ for(let i = 1; i <= 151; i++ ){
 
 function mostrarPokemon(poke){
 
-    let tipos = poke.types.map(type => type.type.name);
-    console.log(tipos)
+    let tipos = poke.types.map((type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`);
+    tipos = tipos.join(``);
 
     const div = document.createElement("div");
     div.classList.add("pokemon");
@@ -25,8 +25,7 @@ function mostrarPokemon(poke){
                                 <h2 class="pokemon-nombre">${poke.name}</h2>
                             </div>
                             <div class="pokemon-tipos">
-                                <p class="electric tipo">Electric</p>
-                                <p class="fighting tipo">Fighting</p>
+                               ${tipos}
                             </div>
                             <div class="pokemon-stats">
                                 <p class="stat">4m</p>
