@@ -22,6 +22,7 @@ function mostrarPokemon(poke) {
 
     const div = document.createElement("div");
     div.classList.add("pokemon");
+    div.id = pokeId;
     div.innerHTML =
         `<p class="pokemon-id-back">#${pokeId}</p>
                         <div class="pokemon-imagen">
@@ -42,6 +43,9 @@ function mostrarPokemon(poke) {
                         </div>
                     </div>`;
     listaPokemon.append(div);
+    div.addEventListener('click', () => {
+        mostrarDetallesPokemon(poke);
+    });
 }
 
 btnHeader.forEach(boton => boton.addEventListener("click", (event) => {
@@ -64,3 +68,29 @@ btnHeader.forEach(boton => boton.addEventListener("click", (event) => {
             })
     }
 }))
+
+
+
+
+function mostrarDetallesPokemon(poke) {
+
+    const modal = document.getElementById('modal');
+
+    modal.innerHTML = `
+                        <div class="pokemon-imagen">
+                            <img src="${poke.sprites.other["official-artwork"].front_default}" alt="${poke.name}">
+                        </div>
+                        <p class="modal-id">#${poke.id}</p>
+                        <h2 class="modal-nombre">${poke.name}</h2>
+                        <p class="modal-peso">Peso: ${poke.weight / 10} Kg</p>
+                        <p class="modal-altura">Altura: ${poke.height / 10} m</p>
+    `;
+
+    modal.style.display = 'block';
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}
